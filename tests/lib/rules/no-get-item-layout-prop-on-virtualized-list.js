@@ -20,7 +20,7 @@ const parserOptions = {
   }
 };
 
-const JSX_ERROR = 'Do not pass getItemLayout as props. Instead, nest children between the opening and closing tags.';
+const JSX_ERROR = 'Do not use the getItemLayout prop on VirtualizedList, Flatlist, or SectionList since it can prevent items from being rendered github.com/facebook/react-native/issues/15990';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -34,15 +34,34 @@ ruleTester.run('no-children-prop', rule, {
     },
     {
       code: '<Flatlist renderItem={() => {}} />;'
+    },
+    {
+      code: '<VirtualizedList />;'
+    },
+    {
+      code: '<VirtualizedList renderItem={() => {}} />;'
+    },
+    {
+      code: '<SectionList />;'
+    },
+    {
+      code: '<SectionList renderItem={() => {}} />;'
+    },
+    {
+      code: '<OtherComponent getItemLayout={() => {}} />;'
     }
   ],
   invalid: [
     {
-      code: '<Flatlist getItemLayout />;',
+      code: '<Flatlist getItemLayout={() => {}} />;',
       errors: [{message: JSX_ERROR}]
     },
     {
-      code: '<Flatlist getItemLayout={() => {}} />;',
+      code: '<VirtualizedList getItemLayout={() => {}} />;',
+      errors: [{message: JSX_ERROR}]
+    },
+    {
+      code: '<SectionList getItemLayout={() => {}} />;',
       errors: [{message: JSX_ERROR}]
     }
   ]
