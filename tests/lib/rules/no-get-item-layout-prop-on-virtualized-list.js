@@ -1,8 +1,3 @@
-/**
- * @fileoverview Tests for no-children-prop
- * @author Benjamin Stepp
- */
-
 'use strict';
 
 // -----------------------------------------------------------------------------
@@ -20,7 +15,7 @@ const parserOptions = {
   }
 };
 
-const JSX_ERROR = 'Do not use the getItemLayout prop on VirtualizedList, Flatlist, or SectionList since it can prevent items from being rendered github.com/facebook/react-native/issues/15990';
+const JSX_ERROR = 'Do not use the getItemLayout prop on VirtualizedList, FlatList, or SectionList since it can prevent items from being rendered github.com/facebook/react-native/issues/15990';
 
 // -----------------------------------------------------------------------------
 // Tests
@@ -30,10 +25,10 @@ const ruleTester = new RuleTester({parserOptions});
 ruleTester.run('no-children-prop', rule, {
   valid: [
     {
-      code: '<Flatlist />;'
+      code: '<FlatList />;'
     },
     {
-      code: '<Flatlist renderItem={() => {}} />;'
+      code: '<FlatList renderItem={() => {}} />;'
     },
     {
       code: '<VirtualizedList />;'
@@ -53,7 +48,7 @@ ruleTester.run('no-children-prop', rule, {
   ],
   invalid: [
     {
-      code: '<Flatlist getItemLayout={() => {}} />;',
+      code: '<FlatList getItemLayout={() => {}} />;',
       errors: [{message: JSX_ERROR}]
     },
     {
