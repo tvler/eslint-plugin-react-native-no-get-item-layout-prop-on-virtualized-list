@@ -22,7 +22,7 @@ const JSX_ERROR = 'Do not use the getItemLayout prop on VirtualizedList, FlatLis
 // -----------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({parserOptions});
-ruleTester.run('no-children-prop', rule, {
+ruleTester.run('no-get-item-layout-prop-on-virtualized-list', rule, {
   valid: [
     {
       code: '<FlatList />;'
@@ -43,6 +43,18 @@ ruleTester.run('no-children-prop', rule, {
       code: '<SectionList renderItem={() => {}} />;'
     },
     {
+      code: '<Animated.FlatList />;'
+    },
+    {
+      code: '<Animated.FlatList renderItem={() => {}} />;'
+    },
+    {
+      code: '<Animated.SectionList />;'
+    },
+    {
+      code: '<Animated.SectionList renderItem={() => {}} />;'
+    },
+    {
       code: '<OtherComponent getItemLayout={() => {}} />;'
     }
   ],
@@ -57,6 +69,14 @@ ruleTester.run('no-children-prop', rule, {
     },
     {
       code: '<SectionList getItemLayout={() => {}} />;',
+      errors: [{message: JSX_ERROR}]
+    },
+    {
+      code: '<Animated.FlatList getItemLayout={() => {}} />;',
+      errors: [{message: JSX_ERROR}]
+    },
+    {
+      code: '<Animated.SectionList getItemLayout={() => {}} />;',
       errors: [{message: JSX_ERROR}]
     }
   ]
