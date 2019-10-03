@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-react-native-no-get-item-layout-prop-on-virtualized-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Tyler Deitz <tylerdeitz@gmail.com>",
   "description": "Checks that the `getItemLayout` prop isn't being used on `VirtualizedList`, `FlatList`, or `SectionList` since it can prevent items from being rendered",
   "main": "index.js",
