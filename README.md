@@ -1,4 +1,4 @@
-Checks that the `getItemLayout` prop isn't being used on `VirtualizedList`, `FlatList`, or `SectionList` since it can prevent items from being rendered. Can ignore after github.com/facebook/react-native/issues/15990 is resolved.
+Checks that the `getItemLayout` prop isn't being used on `VirtualizedList`, `FlatList`, or `SectionList` since it can prevent items from being rendered. Can ignore after [github.com/facebook/react-native/issues/15990](https://github.com/facebook/react-native/issues/15990) is resolved.
 
 ```
 "plugins": [
